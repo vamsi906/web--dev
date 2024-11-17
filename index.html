@@ -3,70 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Document</title>
 </head>
 <body>
-    <h1>Welocome to My Portfolio</h1>
-
-    <a href=""><button>About</button></a>
-    <a href=""><button>Skills</button></a>
-    <a href=""><button>Projects</button></a>
-    <a href=""><button>Contact</button></a>
-    <h1>Vamsi Reddy</h1>
-    <img src="vamsi.webp" alt="img1" height="200px" width="200px">
-    <p>I am passinoate web developer with a focus front-end technologies</p>
-    <p>I am currently pursuing my B.tech in <em>Saveetha School of Engineering </em>Chennai</p>
-    <p>I have learnt web Development from <br> Code with Swaroop.</p>
-    <br>
-    <p>You can <strong>Click here </strong>to check out What I have learnt in HTML CSS JS.</p>
-    <h1>My Skills</h1>
-    <ol>
-        <li>Java Basics</li>
-        <li>HTML Basics</li>
-        <li>CSS Basics</li>
-        <li>Javascript Basics</li>
-    </ol>
-
-    <h1>My Projects</h1>
-
-    <table border="2">
-        <tr>
-            <th>Project</th>
-            <th>Description</th>
-        </tr>
-        <tr>
-            <td>Portfolio Website</td>
-            <td>I have built a Portfolio Website by using HTML, CSS & Javascript</td>
-        </tr>
-        <tr>
-            <td>Python snack game</td>
-            <td>I have built a snack game in the course code in collage </td>
-        </tr>
-    </table>
-
-    <h1>Contact Me</h1>
-    <p>Feel free to get in touch me using the form below: </p>
-    <label for="name">Name</label>
-    <input type="text" name="name" id="name">
-    <br>
-    <label for="email">Email</label>
-    <input type="email">
-    <br>
-    <b>Choose your gender: </b>
-    <input type="radio" name="male" id="male">
-    <label for="male">Male</label>
-    <input type="radio" name="female" id="female">
-    <label for="female">Female</label>
-    <br>
-    <b>Select your interests: </b>
-    <input type="checkbox" id="checkbox">
-    <label for="checkbox">Coding</label>
-    <input type="checkbox" id="reading">
-    <label for="reading">Reading</label>
-    <br>
-    <label for="bio">Bio (up to 200 characterstics): </label>
-    <input type="text" name="name" id="bio">
-    <br>
-    <button type="submit">Submit</button>
+    <header>
+        <h1>Welocome to My Portfolio</h1>
+        <div class="head">
+            <a href="#About"><button class="button">About</button></a>
+            <a href="#Skills"><button class="button">Skills</button></a>
+            <a href="#My Projects"><button class="button">Projects</button></a>
+            <a href="#Contact Me"><button class="button">Contact</button></a>
+        </div>
+    </header>
+    <main>
+        <section id="About">
+            <h1>Vamsi Reddy</h1>
+            <img src="vamsi.webp" alt="img1" height="200px" width="200px">
+            <p>I am passinoate web developer with a focus front-end technologies</p>
+            <p>I am currently pursuing my B.tech in <em>Saveetha School of Engineering </em>Chennai</p>
+            <p>I have learnt web Development from <br> Code with Swaroop.</p>
+            <br>
+            <p>You can <strong>Click here </strong>to check out What I have learnt in HTML CSS JS.</p>
+        </section>
+        <section id="Skills">
+            <h1>My Skills</h1>
+            <ol>
+                <li>Java Basics</li>
+                <li>HTML Basics</li>
+                <li>CSS Basics</li>
+                <li>Javascript Basics</li>
+            </ol>
+        </section>
+        <section id="My Projects">
+            <h1>My Projects</h1>
+    
+            <table border="2">
+                <tr>
+                    <th>Project</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Portfolio Website</td>
+                    <td>I have built a Portfolio Website by using HTML, CSS & Javascript</td>
+                </tr>
+                <tr>
+                    <td>Python snack game</td>
+                    <td>I have built a snack game in the course code in collage </td>
+                </tr>
+            </table>
+        </section>
+        <section id="Contact Me">
+            <form action="">
+                <h1>Contact Me</h1>
+                <p>Feel free to get in touch me using the form below: </p>
+                <div>
+                    <label for="name">Name</label>
+                    <input type="text" name="name" id="name">
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email">
+                </div>
+                <div>
+                    <b>Choose your gender: </b>
+                    <input type="radio" name="male" id="male">
+                    <label for="male">Male</label>
+                    <input type="radio" name="female" id="female">
+                    <label for="female">Female</label>
+                </div>
+                <div>
+                    <b>Select your interests: </b>
+                    <input type="checkbox" id="checkbox">
+                    <label for="checkbox">Coding</label>
+                    <input type="checkbox" id="reading">
+                    <label for="reading">Reading</label>
+                </div>
+                <div>
+                    <label for="bio">Bio (up to 200 characterstics): </label>
+                    <input type="text" name="name" id="bio">
+                </div>
+                <button type="submit" class="submit">Submit</button>
+            </form>
+        </section>
+    </main>
+    <a href="">
+        <button class="submitButton">TOP</button>
+    </a>
+    <footer>
+        <p>@ My Portfolio</p>
+    </footer>
 </body>
 </html>
