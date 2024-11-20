@@ -18,10 +18,8 @@
     </header>
     <main>
         <section id="About">
-            <div>
                 <h1>Vamsi Reddy</h1>
                 <img src="vamsi.webp" alt="img1" height="200px" width="200px">
-            </div>
             <div>
                 <p>I am passinoate web developer with a focus front-end technologies</p>
                 <p>I am currently pursuing my B.tech in <em>Saveetha School of Engineering </em>Chennai</p>
@@ -58,10 +56,8 @@
         </section>
         <section id="Contact Me">
             <form action="">
-                <div>
-                    <h1>Contact Me</h1>
-                    <p>Feel free to get in touch me using the form below: </p>
-                </div>
+                <h1>Contact Me</h1>
+                <p>Feel free to get in touch me using the form below: </p>
                 <div>
                     <label for="name">Name</label>
                     <input type="text" name="name" id="name">
@@ -72,9 +68,9 @@
                 </div>
                 <div>
                     <b>Choose your gender: </b>
-                    <input type="radio" name="male" id="male">
+                    <input type="radio" name="male" id="male" value="male">
                     <label for="male">Male</label>
-                    <input type="radio" name="female" id="female">
+                    <input type="radio" name="female" id="female" value="female">
                     <label for="female">Female</label>
                 </div>
                 <div>
@@ -88,13 +84,15 @@
                     <label for="bio">Bio (up to 200 characterstics): </label>
                     <input type="text" name="name" id="bio">
                 </div>
-                <button type="submit" class="submit">Submit</button>
+                <div>
+                    <button type="submit" class="submit">Submit</button>
+                </div>
             </form>
         </section>
     </main>
-    <a href="">
-        <button class="submitButton">TOP</button>
-    </a>
+        <a href="">
+            <button class="submitButton">TOP</button>
+        </a>
     <footer>
         <p>@ My Portfolio</p>
     </footer>

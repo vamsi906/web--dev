@@ -64,6 +64,13 @@ ol li{
 }
 form div{
     margin: 5px 0;
+    text-align: center;
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
+}
+form h1{
+    text-align: center;
 }
 .submit{
     height: 40px;
@@ -101,4 +108,9 @@ footer{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+form{
+    display: block;
+    margin-top: 0em;
+    unicode-bidi: isolate;
 }
