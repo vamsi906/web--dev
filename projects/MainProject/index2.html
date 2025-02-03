@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Student Loan Tracker</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Navbar Styles */
+        nav {
+            background-color: #343a40;
+            overflow: hidden;
+        }
+
+        nav a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        nav a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        /* Main Content Styling */
+        .content {
+            padding: 20px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #007bff;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        form input, form select, button {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .section {
+            display: none;
+        }
+
+        #loanList, #paymentReminder, #applicationForm {
+            margin-top: 20px;
+        }
+
+        .loanItem {
+            margin-bottom: 20px;
+            padding: 10px;
+            background-color: #f1f1f1;
+            border-radius: 4px;
+        }
+
+        .loanItem h3 {
+            color: #333;
+        }
+
+        #thankYouMessage {
+            display: none;
+            background-color: #d4edda;
+            color: #155724;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        .about, .contact, .info {
+            background-color: #e9ecef;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 4px;
+        }
+
+        /* Mobile responsive */
+        @media (max-width: 600px) {
+            nav a {
+                float: none;
+                display: block;
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="javascript:void(0);" onclick="showSection('home')">Home</a>
+        <a href="javascript:void(0);" onclick="showSection('about')">About</a>
+        <a href="javascript:void(0);" onclick="showSection('contact')">Contact</a>
+        <a href="javascript:void(0);" onclick="showSection('info')">Info</a>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="content">
+
+        <!-- Home Section -->
+        <div id="home" class="section">
+            <h1>Student Loan Tracker</h1>
+            
+            <form id="loanForm">
+                <div>
+                    <label for="loanAmount">Loan Amount:</label>
+                    <input type="number" id="loanAmount" required>
+                </div>
+                <div>
+                    <label for="interestRate">Interest Rate (%):</label>
+                    <input type="number" step="0.1" id="interestRate" required>
+                </div>
+                <div>
+                    <label for="startDate">Start Date:</label>
+                    <input type="date" id="startDate" required>
+                </div>
+                <div>
+                    <label for="term">Term (in years):</label>
+                    <input type="number" id="term" required>
+                </div>
+                <div>
+                    <label for="paymentFrequency">Repayment Frequency:</label>
+                    <select id="paymentFrequency">
+                        <option value="monthly">Monthly</option>
+                        <option value="yearly">Yearly</option>
+                    </select>
+                </div>
+                <button type="submit">Add Loan</button>
+            </form>
+
+            <div id="loanList"></div>
+            <div id="paymentReminder"></div>
+        </div>
+
+        <!-- About Section -->
+        <div id="about" class="section about">
+            <h2>About the Student Loan Tracker</h2>
+            <p>This web app allows students to track their loans, view payment details, and manage repayment schedules. It also provides reminders to help ensure timely repayments.</p>
+        </div>
+
+        <!-- Contact Section -->
+        <div id="contact" class="section contact">
+            <h2>Contact Us</h2>
+            <p>If you have any questions or need support, feel free to contact us:</p>
+            <p>Email: support@loantracker.com</p>
+            <p>Phone: 1-800-123-4567</p>
+        </div>
+
+        <!-- Info Section -->
+        <div id="info" class="section info">
+            <h2>Loan Information</h2>
+            <p>Interest rates vary by loan type and term. Make sure to research your loan options to find the best repayment plans for you.</p>
+        </div>
+
+        <!-- Loan Application Form -->
+        <div id="applicationForm">
+            <h2>Loan Application</h2>
+            <label for="applicantName">Your Name:</label>
+            <input type="text" id="applicantName" required>
+
+            <label for="applicantAmount">Amount Requested:</label>
+            <input type="number" id="applicantAmount" required>
+
+            <button type="button" onclick="submitApplication()">Submit Application</button>
+        </div>
+
+        <!-- Thank You Message -->
+        <div id="thankYouMessage">
+            <h3>Thank you for your application!</h3>
+            <p>Your loan application has been submitted successfully. We will get back to you soon.</p>
+        </div>
+
+    </div>
+
+    <script>
+        // Show the selected section
+        function showSection(section) {
+            const sections = ['home', 'about', 'contact', 'info'];
+            sections.forEach(sec => {
+                document.getElementById(sec).style.display = 'none';
+            });
+            document.getElementById(section).style.display = 'block';
+        }
+
+        // Show the home section by default
+        showSection('home');
+
+        const loanForm = document.getElementById('loanForm');
+        const loanList = document.getElementById('loanList');
+        const paymentReminder = document.getElementById('paymentReminder');
+        const applicationForm = document.getElementById('applicationForm');
+        const thankYouMessage = document.getElementById('thankYouMessage');
+
+        let loans = [];
+
+        loanForm.addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const loanAmount = parseFloat(document.getElementById('loanAmount').value);
+            const interestRate = parseFloat(document.getElementById('interestRate').value);
+            const startDate = document.getElementById('startDate').value;
+            const term = parseInt(document.getElementById('term').value);
+            const paymentFrequency = document.getElementById('paymentFrequency').value;
+
+            const newLoan = { loanAmount, interestRate, startDate, term, paymentFrequency };
+            loans.push(newLoan);
+
+            displayLoans();
+            loanForm.reset();
+        });
+
+        function displayLoans() {
+            loanList.innerHTML = ''; // Clear current list
+            loans.forEach((loan, index) => {
+                const loanItem = document.createElement('div');
+                loanItem.className = 'loanItem';
+                loanItem.innerHTML = `
+                    <h3>Loan ${index + 1}</h3>
+                    <p>Amount: $${loan.loanAmount}</p>
+                    <p>Interest Rate: ${loan.interestRate}%</p>
+                    <p>Start Date: ${loan.startDate}</p>
+                    <p>Term: ${loan.term} years</p>
+                    <p>Payment Frequency: ${loan.paymentFrequency}</p>
+                    <p>Monthly Payment: $${calculateMonthlyPayment(loan).toFixed(2)}</p>
+                `;
+                loanList.appendChild(loanItem);
+            });
+        }
+
+        function calculateMonthlyPayment(loan) {
+            const monthlyRate = loan.interestRate / 100 / 12;
+            const numPayments = loan.paymentFrequency === 'monthly' ? loan.term * 12 : loan.term;
+            return (loan.loanAmount * monthlyRate) / (1 - Math.pow(1 + monthlyRate, -numPayments));
+        }
+
+        // Periodic Payment Reminder
+        function showPaymentReminder() {
+            paymentReminder.innerHTML = "Don't forget to make your next loan payment!";
+        }
+
+        setInterval(showPaymentReminder, 10000);
+
+        function submitApplication() {
+            const applicantName = document.getElementById('applicantName').value;
+            const applicantAmount = parseFloat(document.getElementById('applicantAmount').value);
+
+            if (applicantName && applicantAmount) {
+                thankYouMessage.style.display = 'block';
+                applicationForm.reset();
+            } else {
+                alert('Please fill out all fields');
+            }
+        }
+    </script>
+
+</body>
+</html>

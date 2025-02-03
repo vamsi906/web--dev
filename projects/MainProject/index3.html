@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Portfolio Builder</title>
+    <style>
+        /* Reset default styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: #007BFF;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2rem;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 15px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        nav a:hover {
+            border-bottom: 2px solid white;
+        }
+
+        section {
+            padding: 20px;
+            margin: 30px auto;
+            max-width: 800px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        section h2 {
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        form div {
+            margin-bottom: 15px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        form input, form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        form input[type="file"] {
+            padding: 5px;
+        }
+
+        button {
+            padding: 12px 20px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            font-size: 1rem;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #preview ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #preview ul li {
+            background-color: #f8f9fa;
+            margin: 5px 0;
+            padding: 10px;
+            border-radius: 4px;
+        }
+
+        footer {
+            background-color: #007BFF;
+            color: white;
+            text-align: center;
+            padding: 15px;
+            margin-top: 30px;
+        }
+
+        footer p {
+            margin: 0;
+        }
+
+        /* Responsive design */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 1.5rem;
+            }
+
+            nav a {
+                margin: 0 10px;
+            }
+
+            section {
+                padding: 15px;
+                margin: 20px;
+            }
+
+            button {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Section -->
+    <header>
+        <h1>Student Portfolio Builder</h1>
+        <nav>
+            <a href="#home">Home</a>
+            <a href="#portfolio">Create Portfolio</a>
+            <a href="#preview">Preview</a>
+        </nav>
+    </header>
+
+    <!-- Home Section -->
+    <section id="home">
+        <h2>Welcome to the Portfolio Builder</h2>
+        <p>Create and showcase your personal portfolio for future job applications, internships, and academic opportunities. This easy-to-use tool helps you build a professional online presence.</p>
+    </section>
+
+    <!-- Portfolio Form Section -->
+    <section id="portfolio">
+        <h2>Create Your Portfolio</h2>
+        <form id="portfolioForm">
+            <div>
+                <label for="name">Your Name:</label>
+                <input type="text" id="name" placeholder="Enter your full name">
+            </div>
+
+            <div>
+                <label for="bio">Short Bio:</label>
+                <textarea id="bio" placeholder="Tell us about yourself" rows="4"></textarea>
+            </div>
+
+            <div>
+                <label for="projectTitle">Project Title:</label>
+                <input type="text" id="projectTitle" placeholder="Project title">
+            </div>
+
+            <div>
+                <label for="projectDescription">Project Description:</label>
+                <textarea id="projectDescription" placeholder="Brief description of the project" rows="4"></textarea>
+            </div>
+
+            <button type="button" onclick="addProject()">Add Project</button>
+
+            <div>
+                <label for="skills">Skills (Comma separated):</label>
+                <input type="text" id="skills" placeholder="e.g., HTML, CSS, JavaScript">
+                <button type="button" onclick="addSkills()">Add Skills</button>
+            </div>
+
+            <div>
+                <label for="resume">Upload Resume (PDF):</label>
+                <input type="file" id="resume" accept="application/pdf">
+            </div>
+
+            <div>
+                <label for="certificates">Upload Certificates (PDF/DOC):</label>
+                <input type="file" id="certificates" accept=".pdf, .doc, .docx">
+            </div>
+
+            <button type="submit">Generate Portfolio</button>
+        </form>
+    </section>
+
+    <!-- Portfolio Preview Section -->
+    <section id="preview">
+        <h2>Preview Your Portfolio</h2>
+        <div id="portfolioPreview">
+            <h3 id="previewName"></h3>
+            <p id="previewBio"></p>
+
+            <h4>Projects:</h4>
+            <ul id="previewProjects"></ul>
+
+            <h4>Skills:</h4>
+            <ul id="previewSkills"></ul>
+        </div>
+    </section>
+
+    <!-- Footer Section -->
+    <footer>
+        <p>&copy; 2024 Portfolio Builder</p>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Arrays to store projects and skills
+        let projects = [];
+        let skills = [];
+
+        // Add project to the list
+        function addProject() {
+            const title = document.getElementById('projectTitle').value;
+            const description = document.getElementById('projectDescription').value;
+            
+            if (title && description) {
+                projects.push({ title, description });
+                alert('Project Added!');
+                document.getElementById('projectTitle').value = '';
+                document.getElementById('projectDescription').value = '';
+            } else {
+                alert('Please enter both project title and description!');
+            }
+        }
+
+        // Add skill to the list
+        function addSkills() {
+            const skillsInput = document.getElementById('skills').value;
+            const skillsArray = skillsInput.split(',').map(skill => skill.trim());
+            
+            if (skillsArray.length > 0) {
+                skills = skills.concat(skillsArray);
+                alert('Skills Added!');
+                document.getElementById('skills').value = '';
+            } else {
+                alert('Please enter at least one skill!');
+            }
+        }
+
+        // Handle portfolio form submission
+        document.getElementById('portfolioForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const name = document.getElementById('name').value;
+            const bio = document.getElementById('bio').value;
+
+            // Set preview section with user inputs
+            document.getElementById('previewName').textContent = name;
+            document.getElementById('previewBio').textContent = bio;
+
+            // Add projects to the preview
+            const projectList = document.getElementById('previewProjects');
+            projectList.innerHTML = '';
+            projects.forEach(project => {
+                const li = document.createElement('li');
+                li.textContent = `${project.title}: ${project.description}`;
+                projectList.appendChild(li);
+            });
+
+            // Add skills to the preview
+            const skillList = document.getElementById('previewSkills');
+            skillList.innerHTML = '';
+            skills.forEach(skill => {
+                const li = document.createElement('li');
+                li.textContent = skill;
+                skillList.appendChild(li);
+            });
+
+            alert('Portfolio Generated!');
+        });
+    </script>
+
+</body>
+</html>
