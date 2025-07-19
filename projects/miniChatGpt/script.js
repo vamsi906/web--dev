@@ -71,7 +71,7 @@ function sendMessage() {
     // Simulate bot typing delay
     setTimeout(() => {
         const botResponse = getBotResponse(userMessage);
-        appendMessage("Bhai_AI", botResponse);
+        appendMessage("Chat_Bot", botResponse);
     }, 700); // 700ms delay for a natural feel
 
     userInput.value = ''; // Clear input field
